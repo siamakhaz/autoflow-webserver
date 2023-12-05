@@ -1,0 +1,3 @@
+[submodule "testsubmodule"]
+	path = <pathto-submodule>
+	url = https://<bitbucket.example.com>/scm/<workspace?/<project>.git

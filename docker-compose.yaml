@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  octdocs:
+    image: httpd-server
+    build: .    
+    ports:
+      - 80:80
+      - 443:443
+    container_name: httpd-docs
+    volumes:
+      - ./sites/:/usr/local/apache2/conf/sites
+      - ./public/:/usr/local/apache2/htdocs
+      - ./certs:/usr/local/apache2/conf/certs      
+    restart: always
+  
+  
+  updater-listener:
+    build: ./Updater
+    image: updater-service
+    container_name: updater
+    user: root
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/root/repo      
+    restart: always
